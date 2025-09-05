@@ -1,8 +1,7 @@
-// Global state
 let currentUser = null;
 let polls = [];
 
-// DOM elements
+
 const authSection = document.getElementById('authSection');
 const mainContent = document.getElementById('mainContent');
 const pollModal = document.getElementById('pollModal');
@@ -10,7 +9,7 @@ const modalTitle = document.getElementById('modalTitle');
 const modalBody = document.getElementById('modalBody');
 const closeModal = document.getElementById('closeModal');
 
-// Event listeners
+
 closeModal.addEventListener('click', () => {
     pollModal.style.display = 'none';
 });
@@ -45,7 +44,7 @@ async function apiCall(endpoint, options = {}) {
     }
 }
 
-// Auth functions
+
 function renderAuthSection() {
     if (currentUser) {
         authSection.innerHTML = `
@@ -143,11 +142,11 @@ async function logout() {
         mainContent.innerHTML = '<p>Please login to continue.</p>';
         showSuccess('Logged out successfully!');
     } catch (error) {
-        // Error is already handled in apiCall
+    
     }
 }
 
-// Poll functions
+
 async function loadPolls() {
     try {
         polls = await apiCall('/api/polls');
@@ -274,7 +273,7 @@ async function voteOnPoll(event, pollId) {
         pollModal.style.display = 'none';
         await loadPolls();
     } catch (error) {
-        // Error is already handled in apiCall
+        
     }
 }
 
@@ -358,7 +357,7 @@ async function createPoll(event) {
         pollModal.style.display = 'none';
         await loadPolls();
     } catch (error) {
-        // Error is already handled in apiCall
+        
     }
 }
 
@@ -444,7 +443,7 @@ async function deletePoll(pollId) {
         showSuccess('Poll deleted successfully!');
         await loadPolls();
     } catch (error) {
-        // Error is already handled in apiCall
+        
     }
 }
 
@@ -458,13 +457,12 @@ async function closePoll(pollId) {
         showSuccess('Poll closed successfully!');
         await loadPolls();
     } catch (error) {
-        // Error is already handled in apiCall
+        
     }
 }
 
 // Utility functions
 function showError(message) {
-    // Create a temporary error message display
     const errorDiv = document.createElement('div');
     errorDiv.className = 'error';
     errorDiv.textContent = message;
@@ -476,7 +474,6 @@ function showError(message) {
 }
 
 function showSuccess(message) {
-    // Create a temporary success message display
     const successDiv = document.createElement('div');
     successDiv.className = 'success';
     successDiv.textContent = message;
@@ -500,11 +497,11 @@ function showVotingStats(pollId) {
     
     modalTitle.textContent = `Voting Statistics: ${poll.question}`;
     
-    // Show loading message
+   
     modalBody.innerHTML = '<p>Loading statistics...</p>';
     pollModal.style.display = 'flex';
     
-    // Fetch voting data
+    
     fetch(`/api/polls/${pollId}/stats`)
         .then(response => response.json())
         .then(data => {
@@ -518,8 +515,7 @@ function showVotingStats(pollId) {
                 <p><strong>Poll Status:</strong> ${data.poll.is_closed ? 'Closed' : 'Open'}</p>
                 <div class="chart-container">
             `;
-            
-            // Show results for each option
+    
             data.results.forEach((count, index) => {
                 const percentage = data.total_votes > 0 ? (count / data.total_votes) * 100 : 0;
                 statsHtml += `
@@ -596,5 +592,5 @@ async function initApp() {
     }
 }
 
-// Start the app
+
 initApp();
