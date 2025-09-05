@@ -86,7 +86,3 @@ polls-voting-app/ <br>
  <br>
  <br>
  
- ## RESULTS
- 
-
- 
