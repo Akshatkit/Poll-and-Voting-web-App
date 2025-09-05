@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poll & Voting App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Poll & Voting App</h1>
+            <div class="auth-section" id="authSection">
+                <!-- Login/Register buttons will be inserted here -->
+            </div>
+        </header>
+        
+        <div id="mainContent">
+            <!-- Polls will be loaded here -->
+        </div>
+    </div>
+
+
+    <div class="modal" id="pollModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Poll</h2>
+                <span class="close" id="closeModal">&times;</span>
+            </div>
+            <div id="modalBody">
+                <!-- Poll form will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
